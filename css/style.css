@@ -1246,8 +1246,12 @@ a { text-decoration: none; color: inherit; }
   .page-hero { padding: 0 24px 48px; }
   .solution__badge { position: static; margin-top: 20px; }
   .problem__grid { grid-template-columns: 1fr; }
-  .problem-card { aspect-ratio: 3/2; }
-  .problem-card.touched .problem-card__text { max-height: 160px; opacity: 1; }
+  .problem-card { aspect-ratio: unset; min-height: 320px; }
+  .problem-card__text { max-height: none; opacity: 1; }
+  .problem-card__overlay {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.82) 100%) !important;
+  }
+  .problem-card.touched .problem-card__text { max-height: none; opacity: 1; }
   .problem-card.touched img { transform: scale(1.06); }
   .problem-card.touched .problem-card__overlay {
     background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.85) 100%);
