@@ -150,6 +150,13 @@
           <textarea class="form-textarea" id="message" name="message" placeholder="Что за объект, какие вопросы вас беспокоят, что уже известно..."></textarea>
         </div>
 
+        <div class="form-group" style="display:flex; align-items:flex-start; gap:12px;">
+          <input type="checkbox" id="consent" name="consent" required style="margin-top:3px; accent-color:var(--gold); width:16px; height:16px; flex-shrink:0;">
+          <label for="consent" style="font-size:0.82rem; color:var(--muted); line-height:1.6; cursor:pointer;">
+            Я согласен(а) с обработкой персональных данных в соответствии с <a href="privacy.html" style="color:var(--gold);">политикой конфиденциальности</a>
+          </label>
+        </div>
+
         <button type="submit" class="btn btn--primary form-submit">
           Отправить заявку
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -176,7 +183,7 @@
     <li><a href="faq.html">FAQ</a></li>
     <li><a href="contact.html">Контакты</a></li>
   </ul>
-  <div class="footer__copy">© 2025 Checkitaly · Виталий Дундин</div>
+  <div class="footer__copy">© 2025 Checkitaly · Виталий Дундин · <a href="privacy.html" style="color:rgba(255,255,255,0.35);">Политика конфиденциальности</a></div>
 </footer>
 
 <script src="js/main.js"></script>
