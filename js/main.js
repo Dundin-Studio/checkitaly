@@ -45,6 +45,15 @@ if ('IntersectionObserver' in window) {
   reveals.forEach(el => el.classList.add('visible'));
 }
 
+// ── Problem cards touch support ───────────────────
+document.querySelectorAll('.problem-card').forEach(card => {
+  card.addEventListener('touchstart', () => {
+    const isOpen = card.classList.contains('touched');
+    document.querySelectorAll('.problem-card.touched').forEach(c => c.classList.remove('touched'));
+    if (!isOpen) card.classList.add('touched');
+  }, { passive: true });
+});
+
 // ── FAQ Accordion ─────────────────────────────────
 document.querySelectorAll('.faq-accordion__q').forEach(btn => {
   btn.addEventListener('click', () => {
