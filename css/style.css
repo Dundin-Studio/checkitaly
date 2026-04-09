@@ -853,6 +853,47 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ========================
+   PRIVACY PAGE
+======================== */
+.privacy-block {
+  margin-bottom: 48px;
+}
+.privacy-block h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.privacy-block p {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 12px;
+}
+.privacy-block ul {
+  list-style: none;
+  margin: 12px 0;
+}
+.privacy-block ul li {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.65);
+  padding: 6px 0 6px 20px;
+  position: relative;
+}
+.privacy-block ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+/* ========================
    PRICING SECTION
 ======================== */
 .pricing-section {
@@ -1204,4 +1245,12 @@ a { text-decoration: none; color: inherit; }
   .about-expertise { grid-template-columns: 1fr; }
   .page-hero { padding: 0 24px 48px; }
   .solution__badge { position: static; margin-top: 20px; }
+  .problem__grid { grid-template-columns: 1fr; }
+  .problem-card { aspect-ratio: 3/2; }
+  .problem-card.touched .problem-card__text { max-height: 160px; opacity: 1; }
+  .problem-card.touched img { transform: scale(1.06); }
+  .problem-card.touched .problem-card__overlay {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.85) 100%);
+  }
+  .problem-card.touched .problem-card__icon { background: rgba(200,151,58,0.2); }
 }
