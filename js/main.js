@@ -67,3 +67,61 @@ document.querySelectorAll('.faq-accordion__q').forEach(btn => {
     if (!isOpen) item.classList.add('open');
   });
 });
+
+// Contact form moderation
+const contactForm = document.querySelector('form[action*="formspree.io"]');
+if (contactForm) {
+  const moderatedFields = ['name', 'contact', 'region', 'message']
+    .map(name => contactForm.elements[name])
+    .filter(Boolean);
+
+  const blockedPatterns = [
+    /\u0445\u0443[йеёяюию]/i,
+    /\u043d\u0430\u0445/i,
+    /\u043f\u0438\u0437\u0434/i,
+    /\u0431\u043b[я]+/i,
+    /[её]\u0431[а-я]*/i,
+    /\u0441\u0443\u043a[аиуы]?/i,
+    /\u043c\u0440\u0430\u0437/i,
+    /\u0434\u0435\u0431\u0438\u043b/i
+  ];
+
+  const normalizeForModeration = value => value
+    .toLowerCase()
+    .normalize('NFKD')
+    .replace(/[^\p{L}\p{N}]+/gu, '')
+    .replace(/[a@]/g, '\u0430')
+    .replace(/[e3]/g, '\u0435')
+    .replace(/[o0]/g, '\u043e')
+    .replace(/[p]/g, '\u0440')
+    .replace(/[c]/g, '\u0441')
+    .replace(/[x]/g, '\u0445')
+    .replace(/[y]/g, '\u0443');
+
+  const hasBlockedContent = value => {
+    const normalized = normalizeForModeration(value || '');
+    return blockedPatterns.some(pattern => pattern.test(normalized));
+  };
+
+  const showModerationError = message => {
+    let error = contactForm.querySelector('.form-moderation-error');
+    if (!error) {
+      error = document.createElement('p');
+      error.className = 'form-note form-moderation-error';
+      error.style.color = '#ffb4a8';
+      error.style.marginTop = '14px';
+      const submit = contactForm.querySelector('.form-submit');
+      submit.insertAdjacentElement('afterend', error);
+    }
+    error.textContent = message;
+  };
+
+  contactForm.addEventListener('submit', event => {
+    const badField = moderatedFields.find(field => hasBlockedContent(field.value));
+    if (!badField) return;
+
+    event.preventDefault();
+    showModerationError('Пожалуйста, уберите грубую лексику из заявки. После этого форму можно будет отправить.');
+    badField.focus();
+  });
+}
