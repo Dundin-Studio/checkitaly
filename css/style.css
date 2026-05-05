@@ -699,6 +699,18 @@ a { text-decoration: none; color: inherit; }
   font-size: 0.75rem;
   color: rgba(255,255,255,0.25);
 }
+.footer__social {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+.footer__social-link {
+  color: rgba(255,255,255,0.35);
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+}
+.footer__social-link:hover { color: var(--gold); }
 
 /* ========================
    PAGE HERO (inner pages)
